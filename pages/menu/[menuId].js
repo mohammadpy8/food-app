@@ -1,10 +1,11 @@
+import DetailPage from "@/components/template/DetailPage";
 import { useRouter } from "next/router";
 
 const MenuDetails = ({ foodDetail }) => {
   const router = useRouter();
   if (router.isFallback) return <h2>Is Loading...</h2>;
 
-  return <div></div>;
+  return <DetailPage {...foodDetail} />;
 };
 
 export default MenuDetails;
