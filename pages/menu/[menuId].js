@@ -11,7 +11,7 @@ const MenuDetails = ({ foodDetail }) => {
 export default MenuDetails;
 
 export async function getStaticPaths() {
-  const response = await fetch("http://localhost:4000/data");
+  const response = await fetch(`${process.env.BASE_URL}/data`);
   const json = await response.json();
 
   const data = json.slice(0, 10);
@@ -33,13 +33,13 @@ export async function getStaticProps(context) {
     params: { menuId },
   } = context;
 
-  const response = await fetch(`http://localhost:4000/data/${menuId}`);
+  const response = await fetch(`${process.env.BASE_URL}/data/${menuId}`);
   const data = await response.json();
   if (!data.id) return { notFound: true };
   return {
     props: {
       foodDetail: data,
     },
-    revalidate: 10,
+    revalidate: process.env.REVALIDATE,
   };
 }
