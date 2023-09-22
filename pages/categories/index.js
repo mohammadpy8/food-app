@@ -1,7 +1,7 @@
 import CategoriesPage from "@/components/template/CategoriesPage";
 
 const Categories = ({data}) => {
-  return <CategoriesPage {...data} />;
+  return <CategoriesPage data ={data} />;
 };
 
 export default Categories;
