@@ -35,6 +35,40 @@ const DetailPage = (props) => {
             ) : null}
           </div>
         </div>
+        <div className={style.introduction}>
+          <p>{introduction}</p>
+        </div>
+        <div className={style.details}>
+          <h4>Details</h4>
+          <ul>
+            {details.map((detail, index) => (
+              <li key={index}>
+                <p>{Object.keys(detail)[0]}: </p>
+                <span>{Object.values(detail)[0]}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={style.details}>
+          <h4>Ingredients</h4>
+          <ul>
+            {ingredients.map((item, index) => (
+              <li key={index}>
+                <p>{item}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={style.recipe}>
+          <h4>Recipe</h4>
+          {recipe.map((item, index) => (
+            <div key={index} className={index % 2 ? style.odd : style.even}>
+              <span>{index + 1}</span>
+              <p>{item}</p>
+            </div>
+          ))}
+        </div>
+        <button>Add To Cart</button>
       </div>
     </div>
   );
