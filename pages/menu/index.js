@@ -16,4 +16,4 @@ export async function getStaticProps() {
     },
     revalidate: process.env.REVALIDATE,
   };
-}
+};
