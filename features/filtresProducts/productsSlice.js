@@ -46,6 +46,29 @@ const productsSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       state.selectedItems[IndexD].quantity--;
+      return {
+        ...state,
+      };
+    },
+    CHECKOUT: () => {
+      return {
+        selectedItems: [],
+        itemsCounter: 0,
+        total: 0,
+        checkout: true,
+      };
+    },
+    CLEAR: () => {
+      return {
+        selectedItems: [],
+        itemsCounter: 0,
+        total: 0,
+        checkout: false,
+      };
     },
   },
 });
+
+export default productsSlice.reducer;
+export const { ADDITEMS, REMOVEITEMS, INCREASE, DECREASE, CHECKOUT, CLEAR } =
+  productsSlice.actions;
