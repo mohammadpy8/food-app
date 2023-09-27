@@ -7,6 +7,21 @@ const initialState = {
   checkout: false,
 };
 
+const sumItems = (items) => {
+  const itemsCounter = items.reduce(
+    (total, products) => total + products.quantity,
+    0
+  );
+  const total = items
+    .reduce((total, products) => total + products.quantity * products.price, 0)
+    .toFixed(2);
+
+  return {
+    total,
+    itemsCounter,
+  };
+};
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -20,6 +35,8 @@ const productsSlice = createSlice({
         return {
           ...state,
           selectedItems: [...state.selectedItems],
+          ...sumItems(state.selectedItems),
+          checkout: false,
         };
       }
     },
@@ -30,6 +47,7 @@ const productsSlice = createSlice({
       return {
         ...state,
         selectedItems: [...newSelectedItems],
+        ...sumItems(state.selectedItems),
       };
     },
     INCREASE: (state, action) => {
@@ -39,6 +57,7 @@ const productsSlice = createSlice({
       state.selectedItems[IndexI].quantity++;
       return {
         ...state,
+        ...sumItems(state.selectedItems),
       };
     },
     DECREASE: (state, action) => {
@@ -48,6 +67,7 @@ const productsSlice = createSlice({
       state.selectedItems[IndexD].quantity--;
       return {
         ...state,
+        ...sumItems(state.selectedItems),
       };
     },
     CHECKOUT: () => {
