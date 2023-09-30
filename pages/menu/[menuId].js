@@ -40,6 +40,6 @@ export async function getStaticProps(context) {
     props: {
       foodDetail: data,
     },
-    revalidate: process.env.REVALIDATE,
+    revalidate: +process.env.REVALIDATE,
   };
 }

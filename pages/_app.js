@@ -8,7 +8,9 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <SkeletonTheme baseColor="#808080" highlightColor="#b1b1b1">
-        <Component {...pageProps} />
+        {/* <Layout> */}
+          <Component {...pageProps} />
+        {/* </Layout> */}
       </SkeletonTheme>
     </Provider>
   );
