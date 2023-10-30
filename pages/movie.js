@@ -18,12 +18,11 @@ const Movie = () => {
     
     const fetchData = async () => {
       try {
-          const res = await axios.get(BASE_URL + category, {
+          const { data } = await axios.get(BASE_URL + category, {
               headers,
           });
           // return data;
-          setData(res.data);
-          console.log(res);
+          setData(data);
       } catch (err) {
           console.log(err);
           return err;
@@ -37,7 +36,7 @@ const Movie = () => {
   console.log(data);
 
   return <div>
-    <img  src={`data:image/png;base64,${data}`}/>
+    {/* <img  src={`data:${data}`}/> */}
     <h1>mmmm</h1>
   </div>;
 };

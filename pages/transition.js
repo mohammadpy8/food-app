@@ -1,4 +1,5 @@
 import { useTransition, useState, memo, useEffect } from "react";
+
 const transition = () => {
   const [isPendding, startTransition] = useTransition();
   const [tab, setTab] = useState("about");
@@ -16,8 +17,8 @@ const transition = () => {
 
   useEffect(() => {
     document.addEventListener("scroll", () => {
-        scrollPosition = window.scrollY;
-        console.log(scrollPosition);
+      scrollPosition = window.scrollY;
+      console.log(scrollPosition);
     });
   }, []);
 
@@ -46,8 +47,29 @@ const transition = () => {
   const view = encoder.encode("*");
   console.log(view);
 
+  const [select, setSelect] = useState("");
+
+  useEffect(() => {
+    const selectHandle = (event) => {
+      const selectedItems = event.target.value.substring(
+        event.target.selectionStart,
+        event.target.selectionEnd
+      );
+
+      console.log(selectedItems);
+    };
+
+    document.addEventListener("select", selectHandle);
+
+    return () => document.removeEventListener("select", selectHandle);
+  }, []);
+
   return (
     <>
+      <input
+        value={select}
+        onChange={(event) => setSelect(event.target.value)}
+      />
       <TabButton isActive={tab === "about"} onClick={() => selectTab("about")}>
         about
       </TabButton>
